@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { Form as Unform } from '@unform/web';
+import { FormProps as UnformProps } from '@unform/core';
 
-export const Form = styled(Unform)`
+export const Form = styled(Unform)<UnformProps>`
   padding: 48px 40px;
   display: flex;
   flex-direction: column;
