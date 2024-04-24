@@ -38,6 +38,9 @@
   <a alt="ReactJS">
     <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" />
   </a>
+  <a alt="Create React App">
+    <img src="https://img.shields.io/badge/Create%20React%20App-09D3AC.svg?style=for-the-badge&logo=Create-React-App&logoColor=white" />
+  </a>
   <a alt="TypeScript">
     <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" />
   </a>
