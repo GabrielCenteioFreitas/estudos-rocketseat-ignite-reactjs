@@ -65,6 +65,12 @@
   <a alt="CSS Modules">
     <img src="https://img.shields.io/badge/CSS%20Modules-000000.svg?style=for-the-badge&logo=CSS-Modules&logoColor=white" />
   </a>
+  <a alt="FaunaDB">
+    <img src="https://img.shields.io/badge/Fauna-3A1AB6.svg?style=for-the-badge&logo=Fauna&logoColor=white" />
+  </a>
+  <a alt="Axios">
+    <img src="https://img.shields.io/badge/Axios-5A29E4.svg?style=for-the-badge&logo=Axios&logoColor=white" />
+  </a>
   <a alt="Stripe">
     <img src="https://img.shields.io/badge/Stripe-008CDD.svg?style=for-the-badge&logo=Stripe&logoColor=white" />
   </a>
