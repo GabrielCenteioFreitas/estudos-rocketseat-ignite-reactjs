@@ -25,7 +25,7 @@ export async function saveSubscription(
     id: subscription.id,
     userId: userRef,
     status: subscription.status,
-    priced_id: subscription.items.data[0].price.id,
+    price_id: subscription.items.data[0].price.id,
   }
 
   if (createAction) {
