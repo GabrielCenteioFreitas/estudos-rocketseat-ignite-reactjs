@@ -62,8 +62,14 @@
   <a alt="TypeScript">
     <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" />
   </a>
+  <a alt="Sass">
+    <img src="https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white" />
+  </a>
   <a alt="CSS Modules">
     <img src="https://img.shields.io/badge/CSS%20Modules-000000.svg?style=for-the-badge&logo=CSS-Modules&logoColor=white" />
+  </a>
+  <a alt="Figma">
+     <img src="https://img.shields.io/badge/Figma-F24E1E?logo=figma&logoColor=white&style=for-the-badge" />
   </a>
   <a alt="FaunaDB">
     <img src="https://img.shields.io/badge/Fauna-3A1AB6.svg?style=for-the-badge&logo=Fauna&logoColor=white" />
@@ -74,7 +80,7 @@
   <a alt="Stripe">
     <img src="https://img.shields.io/badge/Stripe-008CDD.svg?style=for-the-badge&logo=Stripe&logoColor=white" />
   </a>
-  <a alt="Figma">
-     <img src="https://img.shields.io/badge/Figma-F24E1E?logo=figma&logoColor=white&style=for-the-badge" />
+  <a alt="Prismic CMS">
+    <img src="https://img.shields.io/badge/Prismic-5163BA.svg?style=for-the-badge&logo=Prismic&logoColor=white" />
   </a>
 </p>
