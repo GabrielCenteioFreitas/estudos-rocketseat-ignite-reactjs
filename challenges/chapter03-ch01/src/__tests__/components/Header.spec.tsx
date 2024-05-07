@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { RouterContext } from 'next/dist/next-server/lib/router-context';
+import { RouterContext } from 'next/dist/shared/lib/router-context.shared-runtime';
 
 import Header from '../../components/Header';
 
@@ -40,8 +40,7 @@ describe('Header', () => {
 
     expect(mockedPush).toHaveBeenCalledWith(
       '/',
-      expect.anything(),
-      expect.anything()
+      {"scroll": true}
     );
   });
 });
