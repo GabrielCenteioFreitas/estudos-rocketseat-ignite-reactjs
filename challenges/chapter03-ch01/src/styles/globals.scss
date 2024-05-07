@@ -4,6 +4,23 @@
   padding: 0;
 }
 
-body * {
-  font: 400 1rem "Inter", sans-serif;
+:root {
+  --title: #F8F8F8;
+  --subtitle: #D7D7D7;
+  --info: #BBBBBB;
+  --body: #EEEEEE;
+  --background: #1A1D23;
+  --highlight: #FF57B2;
+
+  font-size: 62.5%;
 }
+
+body * {
+  font: 400 1.6rem "Inter", sans-serif;
+}
+
+body {
+  background-color: var(--background);
+}
+
+
