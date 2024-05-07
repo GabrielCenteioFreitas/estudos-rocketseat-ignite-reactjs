@@ -20,7 +20,7 @@
     "prismic-dom": "^2.2.7",
     "react": "^18",
     "react-dom": "^18",
-    "react-icons": "^5.1.0",
+    "react-icons": "^5.2.1",
     "slices": "^0.1.4",
     "whatwg-fetch": "^3.6.2"
   },

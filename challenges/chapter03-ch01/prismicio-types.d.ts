@@ -7,11 +7,11 @@ type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 type PostDocumentDataSlicesSlice = PostSlice;
 
 /**
- * Content for posts documents
+ * Content for post documents
  */
 interface PostDocumentData {
   /**
-   * Slice Zone field in *posts*
+   * Slice Zone field in *post*
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
@@ -20,7 +20,7 @@ interface PostDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
   slices: prismic.SliceZone<PostDocumentDataSlicesSlice> /**
-   * Meta Description field in *posts*
+   * Meta Description field in *post*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A brief summary of the page
@@ -31,7 +31,7 @@ interface PostDocumentData {
   meta_description: prismic.KeyTextField;
 
   /**
-   * Meta Image field in *posts*
+   * Meta Image field in *post*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -42,7 +42,7 @@ interface PostDocumentData {
   meta_image: prismic.ImageField<never>;
 
   /**
-   * Meta Title field in *posts*
+   * Meta Title field in *post*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A title of the page used for social media and search engines
@@ -54,7 +54,7 @@ interface PostDocumentData {
 }
 
 /**
- * posts document from Prismic
+ * post document from Prismic
  *
  * - **API ID**: `post`
  * - **Repeatable**: `true`
