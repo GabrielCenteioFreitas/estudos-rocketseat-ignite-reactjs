@@ -1,4 +1,4 @@
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetStaticPaths } from 'next';
 
 import { getPrismicClient } from '../../services/prismic';
 
@@ -8,11 +8,12 @@ import Header from '../../components/Header';
 import ptBR from 'date-fns/locale/pt-BR';
 import { format } from 'date-fns';
 import { GoPerson } from 'react-icons/go';
-import { LuCalendar, LuHeading1 } from 'react-icons/lu';
+import { LuCalendar } from 'react-icons/lu';
 import { FaRegClock } from "react-icons/fa";
 import { RichText } from 'prismic-dom';
 import { PrismicPreviewData } from '@prismicio/next/dist/types';
 import Link from 'next/link';
+import Head from 'next/head';
 
 interface Post {
   first_publication_date: string | null;
@@ -57,87 +58,92 @@ export default function Post({ post, preview, adjacentPosts }: PostProps) {
 
   return (
     <>
-      <div className={styles.headerContainer}>
-        <Header />
-      </div>
-
-      {post.data.banner.url && (
-        <img
-          src={post.data.banner.url}
-          alt="Banner"
-          className={styles.banner}
-        />
-      )}
-
-      <div className={styles.main}>
-        <h1>{post.data.title}</h1>
-
-        <div className={`${commonStyles.info} ${styles.info}`}>
-          <div className={commonStyles.date}>
-            <LuCalendar />
-            {post.first_publication_date}
-          </div>
-          <div className={commonStyles.author}>
-            <GoPerson />
-            {post.data.author}
-          </div>
-          <div className={styles.readingTime}>
-            <FaRegClock />
-            {`${readingTime} min`}
-          </div>
+      <Head>
+        <title>{post.data.title} | spacetraveling.</title>
+      </Head>
+      <div>
+        <div className={styles.headerContainer}>
+          <Header />
         </div>
 
-        {post.last_publication_date && (
-          <span className={styles.editedOn}>
-            {`*editado em ${post.last_publication_date}`}
-          </span>
+        {post.data.banner.url && (
+          <img
+            src={post.data.banner.url}
+            alt="Banner"
+            className={styles.banner}
+          />
         )}
 
-        <div className={styles.content}>
-          {post.data.content.map(content => (
-            <>
-              <h2>{content.heading}</h2>
-              <p dangerouslySetInnerHTML={{ __html: content.body }}></p>
-            </>
-          ))}
-        </div>
+        <div className={styles.main}>
+          <h1>{post.data.title}</h1>
 
-        <hr />
+          <div className={`${commonStyles.info} ${styles.info}`}>
+            <div className={commonStyles.date}>
+              <LuCalendar />
+              {post.first_publication_date}
+            </div>
+            <div className={commonStyles.author}>
+              <GoPerson />
+              {post.data.author}
+            </div>
+            <div className={styles.readingTime}>
+              <FaRegClock />
+              {`${readingTime} min`}
+            </div>
+          </div>
 
-        <div className={styles.adjacentPosts}>
-          {adjacentPosts.prevPost && (
-            <Link href={`/post/${adjacentPosts.prevPost.slug}`} className={styles.prevPostLinkContainer}>
-              <div className={styles.prevPost}>
-                <h6 className={styles.adjacentPostsTitle}>
-                  {adjacentPosts.prevPost.title}
-                </h6>
-                <span className={styles.adjacentPostsDescription}>
-                  Post anterior
-                </span>
-              </div>
-            </Link>
+          {post.last_publication_date && (
+            <span className={styles.editedOn}>
+              {`*editado em ${post.last_publication_date}`}
+            </span>
           )}
-          {adjacentPosts.nextPost && (
-            <Link href={`/post/${adjacentPosts.nextPost.slug}`} className={styles.nextPostLinkContainer}>
-              <div className={styles.nextPost}>
-                <h6 className={styles.adjacentPostsTitle}>
-                  {adjacentPosts.nextPost.title}
-                </h6>
-                <span className={styles.adjacentPostsDescription}>
-                  Próximo post
-                </span>
-              </div>
-            </Link>
+
+          <div className={styles.content}>
+            {post.data.content.map(content => (
+              <>
+                <h2>{content.heading}</h2>
+                <p dangerouslySetInnerHTML={{ __html: content.body }}></p>
+              </>
+            ))}
+          </div>
+
+          <hr />
+
+          <div className={styles.adjacentPosts}>
+            {adjacentPosts.prevPost && (
+              <Link href={`/post/${adjacentPosts.prevPost.slug}`} className={styles.prevPostLinkContainer}>
+                <div className={styles.prevPost}>
+                  <h6 className={styles.adjacentPostsTitle}>
+                    {adjacentPosts.prevPost.title}
+                  </h6>
+                  <span className={styles.adjacentPostsDescription}>
+                    Post anterior
+                  </span>
+                </div>
+              </Link>
+            )}
+            {adjacentPosts.nextPost && (
+              <Link href={`/post/${adjacentPosts.nextPost.slug}`} className={styles.nextPostLinkContainer}>
+                <div className={styles.nextPost}>
+                  <h6 className={styles.adjacentPostsTitle}>
+                    {adjacentPosts.nextPost.title}
+                  </h6>
+                  <span className={styles.adjacentPostsDescription}>
+                    Próximo post
+                  </span>
+                </div>
+              </Link>
+            )}
+          </div>
+
+          {preview && (
+            <button className={commonStyles.exitPreviewModeContainer}>
+              <Link href="/api/exit-preview">
+                Sair do modo Preview
+              </Link>
+            </button>
           )}
         </div>
-
-        {preview && (
-          <button className={commonStyles.exitPreviewModeContainer}>
-            <Link href="/api/exit-preview">
-              Sair do modo Preview
-            </Link>
-          </button>
-        )}
       </div>
     </>
   )

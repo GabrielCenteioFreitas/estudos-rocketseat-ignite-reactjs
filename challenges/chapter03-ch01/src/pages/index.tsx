@@ -16,6 +16,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { PrismicPreviewData } from '@prismicio/next/dist/types';
 import { formatPosts } from '../helpers/format_posts';
+import Head from 'next/head';
 
 
 interface Post {
@@ -57,45 +58,50 @@ export default function Home({ postsPagination, preview }: HomeProps) {
   }
 
   return (
-    <div className={styles.main}>
-      <Header />
+    <>
+      <Head>
+        <title>Home | spacetraveling.</title>
+      </Head>
+      <div className={styles.main}>
+        <Header />
 
-      <div className={styles.postsContainer}>
-        {posts.map(post =>
-          <div className={styles.post}>
-            <Link href={`/post/${post.uid}`}>
-              <h2>{post.data.title}</h2>
-              <h3>{post.data.subtitle}</h3>
+        <div className={styles.postsContainer}>
+          {posts.map(post =>
+            <div className={styles.post}>
+              <Link href={`/post/${post.uid}`}>
+                <h2>{post.data.title}</h2>
+                <h3>{post.data.subtitle}</h3>
 
-              <div className={commonStyles.info}>
-                <div className={commonStyles.date}>
-                  <LuCalendar />
-                  {post.first_publication_date}
+                <div className={commonStyles.info}>
+                  <div className={commonStyles.date}>
+                    <LuCalendar />
+                    {post.first_publication_date}
+                  </div>
+                  <div className={commonStyles.author}>
+                    <GoPerson />
+                    {post.data.author}
+                  </div>
                 </div>
-                <div className={commonStyles.author}>
-                  <GoPerson />
-                  {post.data.author}
-                </div>
-              </div>
+              </Link>
+            </div>
+          )}
+        </div>
+
+        {nextPage && (
+          <button className={styles.loadMore} onClick={handleLoadMoreClick}>
+            Carregar mais posts
+          </button>
+        )}
+
+        {preview && (
+          <button className={commonStyles.exitPreviewModeContainer}>
+            <Link href="/api/exit-preview">
+              Sair do modo Preview
             </Link>
-          </div>
+          </button>
         )}
       </div>
-
-      {nextPage && (
-        <button className={styles.loadMore} onClick={handleLoadMoreClick}>
-          Carregar mais posts
-        </button>
-      )}
-
-      {preview && (
-        <button className={commonStyles.exitPreviewModeContainer}>
-          <Link href="/api/exit-preview">
-            Sair do modo Preview
-          </Link>
-        </button>
-      )}
-    </div>
+    </>
   )
 }
 
