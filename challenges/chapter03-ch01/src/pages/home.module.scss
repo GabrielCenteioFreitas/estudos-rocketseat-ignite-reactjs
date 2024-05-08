@@ -5,6 +5,10 @@
   flex-direction: column;
   gap: 6.4rem;
   padding-block: 8rem;
+  
+  a {
+    text-decoration: none;
+  }
 
   .postsContainer {
     display: grid;
@@ -23,23 +27,6 @@
         font-size: 1.8rem;
         color: var(--subtitle);
         margin-bottom: 1.6rem;
-      }
-      .info {
-        display: flex;
-        align-items: center;
-        gap: 2.4rem;
-        color: var(--info);
-
-        .date {
-          display: flex;
-          align-items: center;
-          gap: .8rem;
-        }
-        .author {
-          display: flex;
-          align-items: center;
-          gap: .8rem;
-        }
       }
     }
   }

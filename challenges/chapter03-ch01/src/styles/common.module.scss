@@ -1,3 +1,22 @@
 .container {
   max-width: 70rem;
 }
+
+.info {
+  display: flex;
+  align-items: center;
+  gap: 2.4rem;
+  color: var(--info);
+  font-size: 1.4rem;
+
+  .date {
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+  }
+  .author {
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+  }
+}

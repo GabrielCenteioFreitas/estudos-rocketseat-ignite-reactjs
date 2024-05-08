@@ -1,1 +1,49 @@
-// TODO
+.headerContainer {
+  max-width: 70rem;
+  margin: 0 auto;
+  padding-block: 4rem;
+}
+
+.banner {
+  width: 100%;
+}
+
+.main {
+  max-width: 70rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 4rem 0 8rem;
+
+  h1 {
+    color: var(--title);
+    font-weight: 700;
+    font-size: 4.8rem;
+    margin-bottom: 2.4rem;
+  }
+
+  .info {
+    margin-bottom: 6.4rem;
+
+    .readingTime {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+    }
+  }
+
+  .content {
+    h2 {
+      color: var(--title);
+      font-size: 3.6rem;
+      font-weight: 700;
+      margin-bottom: 1.8rem;
+    }
+
+    p {
+      color: var(--subtitle);
+      font-size: 1.8rem;
+      margin-bottom: 3.2rem;
+    }
+  }
+}

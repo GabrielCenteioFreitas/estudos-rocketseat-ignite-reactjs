@@ -13,6 +13,7 @@ import Header from '../components/Header';
 import { LuCalendar } from 'react-icons/lu';
 import { GoPerson } from 'react-icons/go';
 import { useState } from 'react';
+import Link from 'next/link';
 
 
 interface Post {
@@ -41,19 +42,21 @@ export default function Home({ posts }: HomeProps) {
       <div className={styles.postsContainer}>
         {posts.slice(0, page).map(post =>
           <div className={styles.post}>
-            <h2>{post.data.title}</h2>
-            <h3>{post.data.subtitle}</h3>
+            <Link href={`/post/${post.uid}`}>
+              <h2>{post.data.title}</h2>
+              <h3>{post.data.subtitle}</h3>
 
-            <div className={styles.info}>
-              <div className={styles.date}>
-                <LuCalendar />
-                {post.first_publication_date}
+              <div className={commonStyles.info}>
+                <div className={commonStyles.date}>
+                  <LuCalendar />
+                  {post.first_publication_date}
+                </div>
+                <div className={commonStyles.author}>
+                  <GoPerson />
+                  {post.data.author}
+                </div>
               </div>
-              <div className={styles.author}>
-                <GoPerson />
-                {post.data.author}
-              </div>
-            </div>
+            </Link>
           </div>
         )}
         {posts[page] && (
