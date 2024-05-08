@@ -196,7 +196,7 @@ export const getStaticProps = async ({
   });
 
   const first_publication_date = format(
-    new Date(response.first_publication_date),
+    new Date(response.first_publication_date || new Date()),
     "dd MMM yyyy",
     {
       locale: ptBR,
