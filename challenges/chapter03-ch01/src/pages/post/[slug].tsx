@@ -14,6 +14,7 @@ import { RichText } from 'prismic-dom';
 import { PrismicPreviewData } from '@prismicio/next/dist/types';
 import Link from 'next/link';
 import Head from 'next/head';
+import { UtterancesComments } from '../../components/UtterancesComments';
 
 interface Post {
   first_publication_date: string | null;
@@ -134,6 +135,10 @@ export default function Post({ post, preview, adjacentPosts }: PostProps) {
                 </div>
               </Link>
             )}
+          </div>
+
+          <div className={styles.commentsContainer}>
+            <UtterancesComments />  
           </div>
 
           {preview && (
