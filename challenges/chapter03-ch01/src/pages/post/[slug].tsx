@@ -16,6 +16,7 @@ import Link from 'next/link';
 
 interface Post {
   first_publication_date: string | null;
+  last_publication_date: string | null;
   data: {
     title: string;
     banner: {
@@ -85,6 +86,12 @@ export default function Post({ post, preview, adjacentPosts }: PostProps) {
             {`${readingTime} min`}
           </div>
         </div>
+
+        {post.last_publication_date && (
+          <span className={styles.editedOn}>
+            {`*editado em ${post.last_publication_date}`}
+          </span>
+        )}
 
         <div className={styles.content}>
           {post.data.content.map(content => (
@@ -184,6 +191,17 @@ export const getStaticProps = async ({
       locale: ptBR,
     }
   ).replace(/(\b\w)/gi, char => char.toUpperCase());
+  
+  let last_publication_date = null
+  if (response.first_publication_date !== response.last_publication_date) {
+    last_publication_date = format(
+      new Date(response.last_publication_date),
+      "dd MMM yyyy', às' hh:mm",
+      {
+        locale: ptBR,
+      }
+    );
+  }
 
   const primaryData = response.data.slices[0].primary
   const title = primaryData.title
@@ -199,6 +217,7 @@ export const getStaticProps = async ({
 
   const post = {
     first_publication_date,
+    last_publication_date,
     data: {
       title,
       banner: {
