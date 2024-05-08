@@ -32,9 +32,19 @@ interface Post {
 interface PostProps {
   post: Post;
   preview: boolean;
+  adjacentPosts: {
+    prevPost: {
+      title: string;
+      slug: string;
+    } | null;
+    nextPost: {
+      title: string;
+      slug: string;
+    } | null;
+  }
 }
 
-export default function Post({ post, preview }: PostProps) {
+export default function Post({ post, preview, adjacentPosts }: PostProps) {
   const headingWords = post.data.content.flatMap(content => {
     return content.heading.split(' ')
   })
@@ -85,6 +95,35 @@ export default function Post({ post, preview }: PostProps) {
           ))}
         </div>
 
+        <hr />
+
+        <div className={styles.adjacentPosts}>
+          {adjacentPosts.prevPost && (
+            <Link href={`/post/${adjacentPosts.prevPost.slug}`} className={styles.prevPostLinkContainer}>
+              <div className={styles.prevPost}>
+                <h6 className={styles.adjacentPostsTitle}>
+                  {adjacentPosts.prevPost.title}
+                </h6>
+                <span className={styles.adjacentPostsDescription}>
+                  Post anterior
+                </span>
+              </div>
+            </Link>
+          )}
+          {adjacentPosts.nextPost && (
+            <Link href={`/post/${adjacentPosts.nextPost.slug}`} className={styles.nextPostLinkContainer}>
+              <div className={styles.nextPost}>
+                <h6 className={styles.adjacentPostsTitle}>
+                  {adjacentPosts.nextPost.title}
+                </h6>
+                <span className={styles.adjacentPostsDescription}>
+                  Próximo post
+                </span>
+              </div>
+            </Link>
+          )}
+        </div>
+
         {preview && (
           <button className={commonStyles.exitPreviewModeContainer}>
             <Link href="/api/exit-preview">
@@ -120,8 +159,26 @@ export const getStaticProps = async ({
     ref: previewData?.ref,
   });
 
+  const nextPost = await prismic.getByType('post', {
+    ref: previewData?.ref,
+    after: response.id,
+    orderings: {
+      field: 'document.first_publication_date',
+      direction: "asc"
+    },
+  });
+  const prevPost = await prismic.getByType('post', {
+    pageSize: 1,
+    ref: previewData?.ref,
+    after: response.id,
+    orderings: {
+      field: 'document.first_publication_date',
+      direction: "desc"
+    },
+  });
+
   const first_publication_date = format(
-    new Date(response.last_publication_date),
+    new Date(response.first_publication_date),
     "dd MMM yyyy",
     {
       locale: ptBR,
@@ -152,10 +209,26 @@ export const getStaticProps = async ({
     }
   }
 
+  const formattedPrevPost =
+    prevPost.results[0] ? {
+      title: prevPost.results[0]?.data.slices[0].primary.title,
+      slug: prevPost.results[0]?.uid
+    } : null
+
+  const formattedNextPost =
+    nextPost.results[0] ? {
+      title: nextPost.results[0]?.data.slices[0].primary.title,
+      slug: nextPost.results[0]?.uid
+    } : null
+
   return {
     props: {
       post,
-      preview
+      preview,
+      adjacentPosts: {
+        prevPost: formattedPrevPost,
+        nextPost: formattedNextPost
+      }
     }
   }
 };

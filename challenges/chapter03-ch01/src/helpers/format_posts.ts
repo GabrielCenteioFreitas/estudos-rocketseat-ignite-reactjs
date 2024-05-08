@@ -13,8 +13,6 @@ interface Post {
 
 export const formatPosts = (posts: any[]): Post[]  => {
   return posts.map(post => {
-    console.log(new Date(post.first_publication_date))
-
     const uid = post.uid
     const first_publication_date = format(
       new Date(post.first_publication_date || new Date()),
