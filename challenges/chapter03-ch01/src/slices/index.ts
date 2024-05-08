@@ -4,5 +4,4 @@ import dynamic from 'next/dynamic';
 
 export const components = {
   post: dynamic(() => import('./Post')),
-  post2: dynamic(() => import('./Post2')),
 };

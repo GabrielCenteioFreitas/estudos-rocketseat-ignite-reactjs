@@ -14,6 +14,8 @@ import { LuCalendar } from 'react-icons/lu';
 import { GoPerson } from 'react-icons/go';
 import { useState } from 'react';
 import Link from 'next/link';
+import { PrismicPreviewData } from '@prismicio/next/dist/types';
+import { formatPosts } from '../helpers/format_posts';
 
 
 interface Post {
@@ -25,22 +27,41 @@ interface Post {
     author: string;
   };
 }
-interface HomeProps {
-  posts: Post[];
+
+interface PostPagination {
+  next_page: string;
+  results: Post[];
 }
 
-export default function Home({ posts }: HomeProps) {
-  const [page, setPage] = useState(1);
+interface HomeProps {
+  postsPagination: PostPagination;
+  preview: boolean;
+}
+
+export default function Home({ postsPagination, preview }: HomeProps) {
+  const [nextPage, setNextPage] = useState(postsPagination.next_page);
+  const [prevPage, setPrevPage] = useState("");
+  const [posts, setPosts] = useState(postsPagination.results)
 
   const handleLoadMoreClick = () => {
-    setPage(cur => cur + 1)
+    fetch(nextPage)
+      .then(response => response.json())
+      .then(data => {
+        setNextPage(data.next_page)
+        setPrevPage(data.prev_page)
+
+        const nextPosts = formatPosts(data.results)
+
+        setPosts([...posts, ...nextPosts])
+      })
   }
 
   return (
     <div className={styles.main}>
       <Header />
+
       <div className={styles.postsContainer}>
-        {posts.slice(0, page).map(post =>
+        {posts.map(post =>
           <div className={styles.post}>
             <Link href={`/post/${post.uid}`}>
               <h2>{post.data.title}</h2>
@@ -59,52 +80,49 @@ export default function Home({ posts }: HomeProps) {
             </Link>
           </div>
         )}
-        {posts[page] && (
-          <button className={styles.loadMore} onClick={handleLoadMoreClick}>
-            Carregar mais posts
-          </button>
-        )}
       </div>
+
+      {nextPage && (
+        <button className={styles.loadMore} onClick={handleLoadMoreClick}>
+          Carregar mais posts
+        </button>
+      )}
+
+      {preview && (
+        <button className={commonStyles.exitPreviewModeContainer}>
+          <Link href="/api/exit-preview">
+            Sair do modo Preview
+          </Link>
+        </button>
+      )}
     </div>
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps<HomeProps> = async ({
+  preview = false,
+  previewData,
+}: {
+  preview: boolean;
+  previewData: PrismicPreviewData
+}) => {
   const prismic = getPrismicClient();
-  const response = await prismic.getAllByType("post", {
-    fetchLinks: ['post.heading', 'post.body'],
+  const response = await prismic.getByType("post", {
     pageSize: 1,
+    ref: previewData?.ref,
   })
 
-  const posts = response.map(post => {
-    const uid = post.uid
-    const first_publication_date = format(
-      new Date(post.last_publication_date),
-      "dd MMM yyyy",
-      {
-        locale: ptBR,
-      }
-    ).replace(/(\b\w)/gi, char => char.toUpperCase());
+  const next_page = response.next_page
 
-    const primaryData = post.data.slices[0].primary
-    const title = primaryData.title
-    const subtitle = primaryData.subtitle
-    const author = primaryData.author
-
-    return {
-      uid,
-      first_publication_date,
-      data: {
-        title,
-        subtitle,
-        author
-      }
-    }
-  })
+  const results = formatPosts(response.results)
 
   return {
     props: {
-      posts
+      postsPagination: {
+        next_page,
+        results
+      },
+      preview
     }
   }
 };
