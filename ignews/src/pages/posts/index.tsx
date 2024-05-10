@@ -48,7 +48,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const posts = response.map(post => {
     const title = RichText.asText(post.data.slices[0]?.items[0].title)
-    const excerptObject = post.data.slices[0]?.items[0].content.find(content => content.type === 'paragraph') as any
+    const excerptObject = post.data.slices[0]?.items[0].content.find((content: any) => content.type === 'paragraph') as any
     const excerpt = excerptObject.text ?? ''
 
     return {
