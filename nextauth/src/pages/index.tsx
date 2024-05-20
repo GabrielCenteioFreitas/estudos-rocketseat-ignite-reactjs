@@ -1,12 +1,32 @@
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
+import { FormEvent, useContext, useState } from "react";
+import { AuthContext } from "@/contexts/AuthContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const { signIn } = useContext(AuthContext)
+
+  async function handleSubmit(event: FormEvent) {
+    event.preventDefault()
+    
+    const data = {
+      email,
+      password,
+    }
+
+    await signIn(data)
+  }
+
   return (
-    <div className={`${styles.container} ${inter.className}`}>
-      <h1>Hello World!</h1>
-    </div>
+    <form onSubmit={handleSubmit} className={`${styles.container} ${inter.className}`}>
+      <input type="email" value={email} onChange={e => setEmail(e.target.value)} />
+      <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
+      <button type="submit">Entrar</button>
+    </form>
   );
 }
