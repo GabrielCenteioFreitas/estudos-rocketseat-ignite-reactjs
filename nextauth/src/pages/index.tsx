@@ -2,6 +2,9 @@ import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import { FormEvent, useContext, useState } from "react";
 import { AuthContext } from "@/contexts/AuthContext";
+import { GetServerSideProps } from "next";
+import { parseCookies } from "nookies";
+import { withSSRGuest } from "@/utils/withSSRGuest";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,3 +33,9 @@ export default function Home() {
     </form>
   );
 }
+
+export const getServerSideProps = withSSRGuest(async (ctx) => {
+  return {
+    props: {}
+  }
+})

@@ -1,5 +1,10 @@
 import { AuthContext } from "@/contexts/AuthContext";
-import { api } from "@/services/api";
+import { setupAPIClient } from "@/services/api";
+import { api } from "@/services/apiClient";
+import { AuthTokenError } from "@/services/errors/AuthTokenError";
+import { withSSRAuth } from "@/utils/withSSRAuth";
+import { GetServerSidePropsContext } from "next";
+import { destroyCookie } from "nookies";
 import { useContext, useEffect } from "react";
 
 const Dashboard = () => {
@@ -17,3 +22,12 @@ const Dashboard = () => {
 }
  
 export default Dashboard;
+
+export const getServerSideProps = withSSRAuth(async (ctx) => {
+  const apiClient = setupAPIClient(ctx)
+  const response = await apiClient.get('/me')
+
+  return {
+    props: {}
+  }
+})
