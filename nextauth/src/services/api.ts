@@ -1,3 +1,4 @@
+import { signOut } from '@/contexts/AuthContext';
 import axios, { AxiosError } from 'axios'
 import { parseCookies, setCookie } from 'nookies'
 
@@ -45,7 +46,6 @@ api.interceptors.response.use(response => {
   
           api.defaults.headers['Authorization'] = `Bearer ${token}`
 
-          console.log("AQUI" + token)
           failedRequestsQueue.forEach(request => request.onSuccess(token))
           failedRequestsQueue = []
         }).catch(error => {
@@ -69,7 +69,9 @@ api.interceptors.response.use(response => {
         })
       })
     } else {
-
+      signOut();
     }
   }
+
+  return Promise.reject(error);
 })
