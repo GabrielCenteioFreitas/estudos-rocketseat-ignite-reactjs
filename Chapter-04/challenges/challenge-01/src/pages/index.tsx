@@ -7,7 +7,7 @@ export default function Home() {
         <title></title>
       </Head>
       <div>
-
+        <h1>Hello world!</h1>
       </div>
     </>
   );
