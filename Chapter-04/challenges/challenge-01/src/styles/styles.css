@@ -1,0 +1,24 @@
+/* Continents Swiper Styles */
+.swiper-pagination {
+  position: absolute;
+  top: 0;
+	width: auto !important;
+	left: auto !important;
+}
+.swiper-pagination-bullet {
+	border-radius: 0;
+	width: .8rem !important;
+	height: .8rem !important;
+	opacity: 1;
+	background-color: #999999 !important;
+  opacity: 1 !important;
+}
+.swiper-pagination-bullet-active {
+	background: #FFBA08 !important;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: #FFBA08 !important;
+  margin-inline: 1.125rem;
+}
