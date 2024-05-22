@@ -3,7 +3,7 @@ import Header from "@/components/Header";
 import Banner from "@/components/Home/Banner";
 import ContinentsSwiper from "@/components/Home/ContinentsSwiper";
 import TravelTypes from "@/components/Home/TravelTypes";
-import { Flex, Image, Text, Box } from "@chakra-ui/react";
+import { Text, Box } from "@chakra-ui/react";
 import Head from "next/head";
 
 export default function Home() {

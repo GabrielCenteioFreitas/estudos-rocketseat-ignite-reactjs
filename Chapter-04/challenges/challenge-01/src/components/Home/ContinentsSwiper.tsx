@@ -1,14 +1,27 @@
 import { Flex, Box, Text, ChakraProps } from "@chakra-ui/react";
 
-import { continentsInfos } from "../../../public/lib/staticContinentsInfos";
-
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
+import { useEffect, useState } from "react";
+import { api } from "@/services/api";
+import { Continent } from "@/services/mirage";
 
 const ContinentsSwiper = ({ ...rest }: ChakraProps) => {
+  const [continentsInfos, setContinentsInfos] = useState<Continent[]>([] as Continent[])
+
+  useEffect(() => {
+    const fetch = async () => {
+      const response = await api
+        .get('/continents')
+      setContinentsInfos(response.data.continents)
+    }
+
+    fetch()
+  }, [])
+
   return ( 
     <Box w="100%" h={450} px={100} {...rest}>
       <Flex
@@ -21,7 +34,7 @@ const ContinentsSwiper = ({ ...rest }: ChakraProps) => {
         spaceBetween={10}
       >
         {continentsInfos.map(continentInfo => 
-          <SwiperSlide key={continentInfo.continent}>
+          <SwiperSlide key={continentInfo.slug}>
             <Flex
               w="100%"
               h="100%"
@@ -30,7 +43,7 @@ const ContinentsSwiper = ({ ...rest }: ChakraProps) => {
               justify="center"
               direction="column"
               gap="4"
-              bgImage={continentInfo.photo}
+              bgImage={continentInfo.banner}
               bgSize="cover"
               bgPosition="center"
               position="relative"
@@ -41,14 +54,14 @@ const ContinentsSwiper = ({ ...rest }: ChakraProps) => {
                 fontSize="5xl"
                 color="snow"
               >
-                {continentInfo.continent}
+                {continentInfo.name}
               </Text>
               <Text
                 fontWeight="bold"
                 fontSize="2xl"
                 color="gray.200"
               >
-                {continentInfo.description}
+                {continentInfo.short_description}
               </Text>
 
               <Box
@@ -57,7 +70,7 @@ const ContinentsSwiper = ({ ...rest }: ChakraProps) => {
                 w="100%"
                 h="100%"
                 bgColor="black"
-                opacity="70%"
+                opacity="40%"
               />
             </Flex>
           </SwiperSlide>
