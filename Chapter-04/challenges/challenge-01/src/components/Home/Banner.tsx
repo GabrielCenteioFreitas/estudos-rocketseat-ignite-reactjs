@@ -1,8 +1,13 @@
-import { Flex, Text, Image, ChakraProps } from "@chakra-ui/react";
+import { Flex, Text, Image, ChakraProps, useBreakpointValue } from "@chakra-ui/react";
 
 interface BannerProps extends ChakraProps {}
 
 const Banner = ({ ...rest }: BannerProps) => {
+  const isWebVersion = useBreakpointValue({
+    base: false,
+    xl: true
+  })
+
   return ( 
     <Flex
       w="100%"
@@ -11,15 +16,15 @@ const Banner = ({ ...rest }: BannerProps) => {
       justify="space-between"
       alignItems="center"
       position="relative"
-      px={140}
-      pt="20"
-      pb={70}
+      px={{base: "4", xl: 140}}
+      pt={{base: "7", xl: "20"}}
+      pb={{base: "7", xl: 70}}
       {...rest}
     >
-      <Flex direction="column" gap="5">
+      <Flex direction="column" gap={{base: "2", xl: "5"}}>
         <Text
           color="snow"
-          fontSize="4xl"
+          fontSize={{base: "xl", xl: "4xl"}}
           fontWeight="medium"
         >
           5 Continentes,<br />
@@ -28,20 +33,26 @@ const Banner = ({ ...rest }: BannerProps) => {
 
         <Text
           color="gray.200"
-          fontSize="xl"
+          fontSize={{base: "sm", xl: "xl"}}
           fontWeight="normal"
         >
-          Chegou a hora de tirar do papel a viagem que você<br />sempre sonhou. 
+          {isWebVersion ? (
+            <Text>Chegou a hora de tirar do papel a viagem que você<br />sempre sonhou. "</Text>
+          ) : (
+            <Text>Chegou a hora de tirar do papel a viagem que você sempre sonhou. "</Text>
+          )}
         </Text>
       </Flex>
 
-      <Image 
-        src="/images/airplane.svg"
-        alt="Airplane"
-        position="absolute"
-        right={140}
-        top={76}
-      />
+      {isWebVersion && (
+        <Image 
+          src="/images/airplane.svg"
+          alt="Airplane"
+          position="absolute"
+          right={140}
+          top={76}
+        />
+      )}
     </Flex>
   );
 }

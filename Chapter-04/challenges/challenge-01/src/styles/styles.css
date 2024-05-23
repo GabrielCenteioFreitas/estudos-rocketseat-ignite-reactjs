@@ -21,4 +21,19 @@
 .swiper-button-next {
   color: #FFBA08 !important;
   margin-inline: 1.125rem;
+	width: 3.75rem !important;
+	height: 3.75rem !important;
+}
+
+@media (max-width: 375px) {
+	.swiper-pagination-bullet {
+		width: .5rem !important;
+		height: .5rem !important;
+	}
+	
+	.swiper-button-prev,
+	.swiper-button-next {
+		scale: .6;
+		margin-inline: -.75rem;
+	}
 }

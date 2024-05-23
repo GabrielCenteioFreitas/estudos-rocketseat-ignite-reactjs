@@ -17,22 +17,22 @@ export default function Home() {
 
         <Banner />
 
-        <TravelTypes mt={115} />
+        <TravelTypes mt={{base: "9", xl: 115}} />
 
-        <Box mt="20" w={90} h="0.5" bg="gray.700" />
+        <Box mt={{base: "9", xl: "20"}} w={90} h="0.5" bg="gray.700" />
 
         <Text
           color="gray.700"
           fontWeight="medium"
-          fontSize="4xl"
+          fontSize={{base: "xl", xl: "4xl"}}
           textAlign="center"
-          my="14"
+          mt={{base: "6", xl: "14"}}
         >
           Vamos nessa?<br />
           Então escolha seu continente
         </Text>
 
-        <ContinentsSwiper mb="10" />
+        <ContinentsSwiper mt={{base: "5", xl: "14"}} mb={{base: "6", xl: "10"}} />
       </Container>
     </>
   );

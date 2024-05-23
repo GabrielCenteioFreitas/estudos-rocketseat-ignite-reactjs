@@ -11,7 +11,7 @@ const Banner = ({ continent, children, ...rest }: BannerProps) => {
   return ( 
     <Box
       w="100%"
-      h={500}
+      h={{base: 150, xl: 500}}
       bgImage={continent.banner}
       bgSize="cover"
       bgPosition="center"
@@ -21,11 +21,12 @@ const Banner = ({ continent, children, ...rest }: BannerProps) => {
     >
       <Text
         position="absolute"
-        left={140}
-        bottom={59}
+        left={{base: "50%", xl: 140}}
+        bottom={{base: "50%", xl: 59}}
+        transform="translate(-50%, 50%)"
         color="snow"
         fontWeight="semibold"
-        fontSize="5xl"
+        fontSize={{base: "3xl", xl: "5xl"}}
       >
         {continent.name}
       </Text>

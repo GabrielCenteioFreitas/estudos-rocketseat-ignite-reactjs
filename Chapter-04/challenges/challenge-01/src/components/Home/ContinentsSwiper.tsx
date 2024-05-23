@@ -24,7 +24,7 @@ const ContinentsSwiper = ({ ...rest }: ChakraProps) => {
   }, [])
 
   return ( 
-    <Box w="100%" h={450} px={100} {...rest}>
+    <Box w="100%" h={{base: 250, xl: 450}} px={{base: 0, xl: 100}} {...rest}>
       <Flex
         as={Swiper} h="100%" w="100%" color="gray.200" fontSize="5xl" justify="center"
         navigation
@@ -44,24 +44,25 @@ const ContinentsSwiper = ({ ...rest }: ChakraProps) => {
                 align="center"
                 justify="center"
                 direction="column"
-                gap="4"
+                gap={{base: "3", xl: "4"}}
                 bgImage={continentInfo.banner}
                 bgSize="cover"
                 bgPosition="center"
                 position="relative"
                 zIndex={-2}
+                textAlign="center"
+                fontWeight="bold"
               >
                 <Text
-                  fontWeight="bold"
-                  fontSize="5xl"
+                  fontSize={{base: "2xl", xl: "5xl"}}
                   color="snow"
                 >
                   {continentInfo.name}
                 </Text>
                 <Text
-                  fontWeight="bold"
-                  fontSize="2xl"
+                  fontSize={{base: "sm", xl: "2xl"}}
                   color="gray.200"
+                  maxW="75%"
                 >
                   {continentInfo.short_description}
                 </Text>

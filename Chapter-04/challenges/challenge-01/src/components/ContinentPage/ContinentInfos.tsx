@@ -8,8 +8,21 @@ interface ContinentInfosProps extends ChakraProps {
 
 const ContinentInfos = ({ continent, ...rest }: ContinentInfosProps) => {
   return ( 
-    <Flex align="center" w="100%" gap={70} px={140} {...rest} >
-      <Text maxW={600} textAlign="justify" textIndent="24px" fontSize="xl" color="gray.700">
+    <Flex
+      w="100%"
+      px={{base: "4", xl: 140}}
+      align="center"
+      direction={{base: "column", xl: "row"}}
+      gap={{base: "4", xl: 70}}
+      {...rest}
+    >
+      <Text
+        maxW={600}
+        textAlign="justify"
+        textIndent={{base: "6px", xl:"24px"}}
+        fontSize={{base: "sm", xl: "xl"}}
+        color="gray.700"
+      >
         {continent.long_description}
       </Text>
 

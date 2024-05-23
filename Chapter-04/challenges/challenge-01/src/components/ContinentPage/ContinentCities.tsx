@@ -8,12 +8,12 @@ interface ContinentCitiesProps extends ChakraProps {
 
 const ContinentCities = ({ cities, ...rest }: ContinentCitiesProps) => {
   return ( 
-    <Flex direction="column" gap="10" w="100%" px={140} {...rest}>
-      <Text color="gray.700" fontWeight="medium" fontSize="4xl">
+    <Flex direction="column" gap={{base: "5", xl: "10"}} w="100%" px={{base: "4", xl: 140}} {...rest}>
+      <Text color="gray.700" fontWeight="medium" fontSize={{base: "2xl", xl: "4xl"}}>
         Cidades +100
       </Text>
 
-      <SimpleGrid minChildWidth="256px" gap="10">
+      <SimpleGrid minChildWidth="256px" gap={{base: "5", xl: "10"}} justifyItems="center" >
         {cities?.map(city => 
           <ContinentCity key={city.name} city={city} />
         )}

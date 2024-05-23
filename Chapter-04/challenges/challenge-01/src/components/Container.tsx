@@ -7,7 +7,7 @@ interface ContainerProps {
 
 const Container = ({ children }: ContainerProps) => {
   return ( 
-    <Flex direction="column" maxW={1440} w="100vw" mx="auto" align="center">
+    <Flex direction="column" maxW={{base: 375, xl: 1440}} w="100vw" mx="auto" align="center">
       {children}
     </Flex>
   );

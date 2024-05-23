@@ -42,15 +42,23 @@ const ContinentPage = ({ slug }: ContinentPageProps) => {
       <Container>
         <Header position="relative">
           <Link href="/">
-            <Icon as={FaChevronLeft} position="absolute" left={140} top="50%" transform="translateY(-50%)" />
+            <Icon
+              as={FaChevronLeft}
+              position="absolute"
+              left={{base: "4", xl: 140}}
+              top="50%"
+              transform="translateY(-50%)"
+              w={{base: "4", xl: "8"}}
+              h={{base: "4", xl: "8"}}
+            />
           </Link>
         </Header>
 
         <Banner continent={continent} />
 
-        <ContinentInfos continent={continent} mt="20" />
+        <ContinentInfos continent={continent} mt={{base: "6", xl: "20"}} />
 
-        <ContinentCities cities={continent.cities} mt="20" />
+        <ContinentCities cities={continent.cities} mt={{base: "8", xl: "20"}} />
       </Container>
     </>
   );
