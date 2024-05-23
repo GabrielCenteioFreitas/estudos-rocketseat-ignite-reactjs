@@ -1,7 +1,14 @@
 import { Factory, Model, Response, createServer, ActiveModelSerializer } from 'miragejs'
-import { faker, fakerEN_US } from '@faker-js/faker'
+import { faker } from '@faker-js/faker'
 
 import { continentsInfos } from '../../../public/lib/staticContinentsInfos'
+
+export type City = {
+  name: string;
+  country: string;
+  country_code: string;
+  photo: string;
+}
 
 export type Continent = {
   name: string;
@@ -12,12 +19,7 @@ export type Continent = {
   countries: number;
   languages: number;
   cities_plus_100: number;
-  cities: {
-    name: string;
-    country: string;
-    country_code: string;
-    photo: string;
-  }[]
+  cities: City[];
 }
 
 export function makeServer() {
@@ -42,10 +44,10 @@ export function makeServer() {
           return continentsInfos[i].description
         },
         long_description() {
-          return faker.lorem.paragraph()
+          return faker.lorem.paragraphs(2)
         },
         banner(i: number) {
-          return faker.image.urlLoremFlickr({ category: continentsInfos[i].slug })
+          return faker.image.urlPicsumPhotos()
         },
         countries() {
           return faker.number.int({ min: 10, max: 99 })
@@ -56,12 +58,12 @@ export function makeServer() {
         cities_plus_100() {
           return faker.number.int({ min: 10, max: 99 })
         },
-        cities(i: number) {
-          return Array.from({ length: 5 }).map(() => ({
+        cities() {
+          return Array.from({ length: Math.ceil(Math.random() * 6) + 4 }).map(() => ({
             name: faker.location.city(),
             country: faker.location.country(),
             country_code: faker.location.countryCode(),
-            photo: faker.image.urlLoremFlickr({ category: continentsInfos[i].slug }),
+            photo: faker.image.urlPicsumPhotos()
           }));
         }
       })
@@ -90,10 +92,20 @@ export function makeServer() {
         )
       });
 
-      this.get('/continents/:id');
+      this.get('/continents/:slug', function (
+        schema: any,
+        request: any
+      ) {
+        const slug = request.params.slug;
+        const continent = schema.continents.findBy({ slug });
+
+        return continent
+          ? new Response(200, {}, { continent })
+          : new Response(404, {}, { error: 'Continent not found' });
+      });
 
       this.namespace = '';
-      this.passthrough()
+      this.passthrough();
     }
   })
 

@@ -5,9 +5,13 @@ export const theme = extendTheme({
     snow: "#F5F8FA",
     gray: {
       "700": "#47585B",
+      "400": "#999999",
       "200": "#DADADA"
     },
-    highlight: "#FFBA08"
+    highlight: {
+      "900": "#FFBA08",
+      "50": "#FFBA0850",
+    }
   },
   fonts: {
     heading: 'Poppins',

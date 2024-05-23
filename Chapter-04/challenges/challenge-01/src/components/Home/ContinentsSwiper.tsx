@@ -8,6 +8,7 @@ import 'swiper/css/pagination'
 import { useEffect, useState } from "react";
 import { api } from "@/services/api";
 import { Continent } from "@/services/mirage";
+import Link from "next/link";
 
 const ContinentsSwiper = ({ ...rest }: ChakraProps) => {
   const [continentsInfos, setContinentsInfos] = useState<Continent[]>([] as Continent[])
@@ -35,44 +36,46 @@ const ContinentsSwiper = ({ ...rest }: ChakraProps) => {
       >
         {continentsInfos.map(continentInfo => 
           <SwiperSlide key={continentInfo.slug}>
-            <Flex
-              w="100%"
-              h="100%"
-              bg="gray.700"
-              align="center"
-              justify="center"
-              direction="column"
-              gap="4"
-              bgImage={continentInfo.banner}
-              bgSize="cover"
-              bgPosition="center"
-              position="relative"
-              zIndex={-2}
-            >
-              <Text
-                fontWeight="bold"
-                fontSize="5xl"
-                color="snow"
-              >
-                {continentInfo.name}
-              </Text>
-              <Text
-                fontWeight="bold"
-                fontSize="2xl"
-                color="gray.200"
-              >
-                {continentInfo.short_description}
-              </Text>
-
-              <Box
-                position="absolute"
-                zIndex={-1}
+            <Link href={`/continents/${continentInfo.slug}`}>
+              <Flex
                 w="100%"
                 h="100%"
-                bgColor="black"
-                opacity="40%"
-              />
-            </Flex>
+                bg="gray.700"
+                align="center"
+                justify="center"
+                direction="column"
+                gap="4"
+                bgImage={continentInfo.banner}
+                bgSize="cover"
+                bgPosition="center"
+                position="relative"
+                zIndex={-2}
+              >
+                <Text
+                  fontWeight="bold"
+                  fontSize="5xl"
+                  color="snow"
+                >
+                  {continentInfo.name}
+                </Text>
+                <Text
+                  fontWeight="bold"
+                  fontSize="2xl"
+                  color="gray.200"
+                >
+                  {continentInfo.short_description}
+                </Text>
+
+                <Box
+                  position="absolute"
+                  zIndex={-1}
+                  w="100%"
+                  h="100%"
+                  bgColor="black"
+                  opacity="40%"
+                />
+              </Flex>
+            </Link>
           </SwiperSlide>
         )}
       </Flex>

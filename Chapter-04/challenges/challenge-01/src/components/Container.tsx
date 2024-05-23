@@ -2,7 +2,7 @@ import { Flex } from "@chakra-ui/react";
 import { ReactNode } from "react";
 
 interface ContainerProps {
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const Container = ({ children }: ContainerProps) => {
