@@ -84,3 +84,25 @@
     <img src="https://img.shields.io/badge/Prismic-5163BA.svg?style=for-the-badge&logo=Prismic&logoColor=white" />
   </a>
 </p>
+
+<h2>Chapter 04</h2>
+<p align="left">
+  <a alt="ReactJS">
+    <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" />
+  </a>
+  <a alt="NextJS">
+    <img src="https://img.shields.io/badge/Next.js-000000.svg?style=for-the-badge&logo=nextdotjs&logoColor=white" />
+  </a>
+  <a alt="TypeScript">
+    <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" />
+  </a>
+  <a alt="ChakraUI">
+    <img src="https://img.shields.io/badge/Chakra%20UI-319795.svg?style=for-the-badge&logo=Chakra-UI&logoColor=white" />
+  </a>
+  <a alt="React Query">
+    <img src="https://img.shields.io/badge/React%20Query-FF4154.svg?style=for-the-badge&logo=React-Query&logoColor=white" />
+  </a>
+  <a alt="Axios">
+    <img src="https://img.shields.io/badge/Axios-5A29E4.svg?style=for-the-badge&logo=Axios&logoColor=white" />
+  </a>
+</p>
