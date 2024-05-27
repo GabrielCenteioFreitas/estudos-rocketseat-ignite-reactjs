@@ -33,7 +33,62 @@ export default function Home(): JSX.Element {
   );
 
   const formattedData = useMemo(() => {
-    const dataPages = data?.pages.map(page => page.data)
+    const dataTest = {
+      "pages": [
+        {
+          "data": [
+            {
+                "title": "Doge",
+                "description": "The best doge",
+                "url": "https://sm.ign.com/ign_br/news/k/kabosu-the/kabosu-the-dog-behind-the-doge-meme-has-died_3ge9.jpg",
+                "ts": 1620222828340000,
+                "id": "294961059684418048"
+            },
+            {
+                "title": "Cachorrinho gif",
+                "description": "A Gracie é top",
+                "url": "https://i.ibb.co/r3NbmgH/ezgif-3-54a30c130cef.gif",
+                "ts": 1620222856980000,
+                "id": "295991055792210435"
+            },
+            {
+                "title": "React",
+                "description": "Dan Abramov",
+                "url": "https://cdn.iconscout.com/icon/free/png-256/free-react-1-282599.png",
+                "ts": 1620223108460000,
+                "id": "295991069654385154"
+            },
+            {
+                "title": "Ignite",
+                "description": "Wallpaper Celular",
+                "url": "https://i.ibb.co/DbfGQW5/1080x1920.png",
+                "ts": 1620223119610000,
+                "id": "295991085899973123"
+            },
+            {
+                "title": "Ignite",
+                "description": "Wallpaper PC 4k",
+                "url": "https://i.ibb.co/fvYLKFn/3840x2160.png",
+                "ts": 1620223133800000,
+                "id": "295991107279389188"
+            },
+            {
+                "title": "Paisagem",
+                "description": "Sunset",
+                "url": "https://i.ibb.co/st42sNz/petr-vysohlid-9fqw-Gq-GLUxc-unsplash.jpg",
+                "ts": 1620223149390000,
+                "id": "295991128736399874"
+            }
+          ],
+          "after": "295991160078336512"
+        },
+      ],
+      "pageParams": [
+          null
+      ]
+    }
+
+    const dataPages = dataTest?.pages.map(page => page.data)
     const dataPagesFlatted = dataPages?.flat()
 
     return dataPagesFlatted
@@ -62,7 +117,7 @@ export default function Home(): JSX.Element {
             rounded="lg"
             fontWeight="bold"
             fontSize="md"
-            color="gray.50"
+            color="white"
             onClick={() => fetchNextPage()}
           >
             {!isFetchingNextPage
