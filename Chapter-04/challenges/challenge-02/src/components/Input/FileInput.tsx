@@ -30,6 +30,7 @@ import {
 } from 'react-hook-form';
 import { FiAlertCircle, FiPlus } from 'react-icons/fi';
 import { api } from '../../services/api';
+import { AddImageFormData } from '../Form/FormAddImage';
 
 export interface FileInputProps {
   name: string;
@@ -41,7 +42,7 @@ export interface FileInputProps {
   onChange: (
     event: React.ChangeEvent<HTMLInputElement>
   ) => Promise<boolean | void>;
-  trigger: UseFormTrigger<FieldValues>;
+  trigger: UseFormTrigger<AddImageFormData>;
 }
 
 const FileInputBase: ForwardRefRenderFunction<

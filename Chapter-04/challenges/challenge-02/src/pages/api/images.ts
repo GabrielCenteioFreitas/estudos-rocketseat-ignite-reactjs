@@ -60,7 +60,7 @@ export default async function handler(
       .query<ImagesQueryResponse>(
         query.Map(
           query.Paginate(
-            query.Documents(query.Collection('images')),
+            query.Reverse(query.Documents(query.Collection('images'))),
             queryOptions
           ),
           query.Lambda('X', query.Get(query.Var('X')))
