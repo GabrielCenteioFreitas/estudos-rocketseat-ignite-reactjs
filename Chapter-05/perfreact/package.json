@@ -10,6 +10,7 @@
     "server": "json-server -d 750 -w -p 3333 ./server.js"
   },
   "dependencies": {
+    "@next/bundle-analyzer": "^14.2.3",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
