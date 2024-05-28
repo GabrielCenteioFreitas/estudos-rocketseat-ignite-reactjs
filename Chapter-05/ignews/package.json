@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "slicemachine": "start-slicemachine"
+    "slicemachine": "start-slicemachine",
+    "test": "jest"
   },
   "dependencies": {
     "@prismicio/client": "^7.4.1",
@@ -17,6 +18,7 @@
     "@stripe/stripe-js": "^3.3.0",
     "axios": "^1.6.8",
     "faunadb": "^4.8.0",
+    "jest-environment-jsdom": "^29.7.0",
     "next": "14.2.2",
     "next-auth": "^4.24.7",
     "prismic-dom": "^2.2.7",
@@ -29,11 +31,18 @@
   },
   "devDependencies": {
     "@slicemachine/adapter-next": "^0.3.38",
+    "@testing-library/dom": "^10.1.0",
+    "@testing-library/jest-dom": "^6.4.5",
+    "@testing-library/react": "^15.0.7",
+    "@types/jest": "^29.5.12",
     "@types/next-auth": "^3.15.0",
     "@types/node": "^20",
     "@types/prismic-dom": "^2.1.4",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
+    "jest-dom": "^4.0.0",
     "slice-machine-ui": "^1.26.0",
     "typescript": "^5"
   }
