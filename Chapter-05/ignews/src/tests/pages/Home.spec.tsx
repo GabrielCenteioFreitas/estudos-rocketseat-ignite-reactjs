@@ -3,16 +3,34 @@ import { stripe } from '../../services/stripe'
 import { render, screen } from '@testing-library/react'
 import { createMock } from 'ts-jest-mock'
 
-jest.mock('next-auth/react')
-jest.mock('next/router', () => {
+jest.mock('next-auth/react', () => {
   return {
-    useSession: () => [null, false]
+    useSession() {
+      return [null, false]
+    }
   }
 })
-jest.mock('../../services/stripe')
+jest.mock('next/router', () => {
+  return {
+    useRouter() {
+      return {
+        push: jest.fn()
+      }
+    }
+  }
+})
+jest.mock('@/services/stripe', () => {
+  return {
+    stripe: {
+      prices: {
+        retrieve: jest.fn()
+      }
+    }
+  }
+})
 
 describe('Home page', () => {
-  it('renders correclty', () => {
+  it('renders correclty', () => {    
     render(
       <Home product={ {
           priceId: 'fake-price-id',
